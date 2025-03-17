@@ -13,8 +13,13 @@ const app = express();
 // app.use(cors({ origin: "*" }));
 app.use(
   cors({
-    origin: "http://localhost:5173", // Allow frontend access
-    credentials: true,
+    origin: [
+      "http://localhost:5173",
+      "https://google-notebooklm-clone.vercel.app",
+    ],
+    credentials: true, 
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+    allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
   })
 );
 app.use(express.json());
