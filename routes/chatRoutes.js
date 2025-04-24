@@ -51,11 +51,7 @@ router.post("/", async (req, res) => {
     res.json({ reply: aiReply });
   } catch (error) {
    
-    if (error.response) {
-      console.error("Error from OpenAI API:", error.response.data);
-    } else {
-      console.error("Unexpected Error:", error.message);
-    }
+  
     res.status(500).json({ error: "AI processing failed" });
   }
 });
