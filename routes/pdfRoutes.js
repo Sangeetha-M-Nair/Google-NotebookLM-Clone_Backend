@@ -5,16 +5,7 @@ const path = require("path");
 
 const router = express.Router();
 
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, "uploads/"); // Specify the directory to save the files
-//   },
-//   filename: (req, file, cb) => {
-//     const uniqueFilename = Date.now() + path.extname(file.originalname); // Use current timestamp as filename
-//     console.log("Generated filename:", uniqueFilename); // Log the generated filename
-//     cb(null, uniqueFilename);
-//   },
-// });
+
 
 
 const cloudinary = require("cloudinary").v2;
@@ -36,11 +27,6 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({ storage });
 
-
-
-
-
-// router.post("/upload", upload.single("file"), async (req, res) => {
 //   try {
 //     console.log("Multer File Object:", req.file); // DEBUGGING
 
@@ -75,9 +61,8 @@ router.post("/upload", upload.single("file"), async (req, res) => {
       return res.status(400).json({ error: "No file uploaded" });
     }
 
-    const fileUrl = req.file.path; // ✅ Cloudinary automatically provides a file URL
+    const fileUrl = req.file.path; 
 
-    // 🔹 Save file details to MongoDB
     const newPdf = new Pdf({ filename: req.file.originalname, fileUrl });
     await newPdf.save();
 

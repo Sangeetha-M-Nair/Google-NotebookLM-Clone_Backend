@@ -7,10 +7,7 @@ const pdfRoutes = require("./routes/pdfRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const app = express();
 
-// const fileUpload = require("express-fileupload");
 
-// app.use(fileUpload()); // Middleware to parse files
-// app.use(cors({ origin: "*" }));
 app.use(
   cors({
     origin: [
@@ -18,13 +15,12 @@ app.use(
       "https://google-notebooklm-clone.vercel.app",
     ],
     credentials: true, 
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
-    allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
+    methods: ["GET", "POST", "PUT", "DELETE"], 
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 app.use(express.json());
 
-// app.use("/uploads", express.static("uploads"));
 app.use(
   "/uploads",
   express.static("uploads", {
@@ -34,7 +30,6 @@ app.use(
   })
 );
 
-// Configure Multer to save files in the "uploads" directory
 
 mongoose
   .connect(process.env.MONGO_URI, {
